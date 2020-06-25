@@ -13,6 +13,25 @@ for x in range(9):
         valueEntry = tk.Entry (root, width = 1 ) 
         canvas1.create_window(100 + 50*x, 100 + 50*y , window=valueEntry) 
 
+TOP_LEFT_X = 100 
+TOP_LEFT_Y = 100 
+TOP_RIGHT_X = 600 
+TOP_RIGHT_Y = 100
+TOP_1_3_X = ((TOP_RIGHT_X - TOP_LEFT_X) / 3 ) + TOP_LEFT_X 
+TOP_1_3_Y = TOP_RIGHT_Y 
+BOTTOM_LEFT_X = 100 
+BOTTOM_LEFT_Y = 600 
+BOTTOM_RIGHT_X = 600 
+BOTTOM_RIGHT_Y = 600  
+BOTTOM_1_3_X = ((BOTTOM_RIGHT_X - BOTTOM_LEFT_X) / 3 ) + BOTTOM_LEFT_X 
+BOTTOM_1_3_Y = BOTTOM_RIGHT_Y 
+
+canvas1.create_line(TOP_LEFT_X, TOP_LEFT_Y, TOP_RIGHT_X, TOP_RIGHT_Y ) 
+canvas1.create_line(TOP_LEFT_X, TOP_LEFT_Y, BOTTOM_LEFT_X, BOTTOM_LEFT_Y ) 
+canvas1.create_line(TOP_RIGHT_X, TOP_RIGHT_Y, BOTTOM_RIGHT_X, BOTTOM_RIGHT_Y ) 
+canvas1.create_line(BOTTOM_LEFT_X, BOTTOM_LEFT_Y, BOTTOM_RIGHT_X, BOTTOM_RIGHT_Y )  
+canvas1.create_line(TOP_1_3_X, TOP_1_3_Y, BOTTOM_1_3_X, BOTTOM_1_3_Y ) 
+
 def getSquareRoot ():  
     x1 = entry1.get() 
     
