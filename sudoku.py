@@ -38,7 +38,7 @@ import tkinter as tk
 
 root= tk.Tk()
 
-canvas1 = tk.Canvas(root, width = 700 , height = 800 )  
+canvas1 = tk.Canvas(root, width = 700 , height = 700 )  
 canvas1.pack()
   
 lblTitle = tk.Label(root, text="Sudoku Solver")  
@@ -125,12 +125,28 @@ def fill () :
         entry.delete(0, tk.END)
         entry.insert(0, new_text)
         i = i + 1 
-    
+
+def saveFile () : 
+    f = open("suduko.txt", "w")
+    for e in entries :  
+        f.write( str(e.get()) + ",")  
+    f.close()
+
+def openFile () :  
+    f = open("sudoku.txt" )  
+    f.close()  
+
+btnSave = tk.Button(text='Save', command=saveFile ) 
+canvas1.create_window(200 , 650 , window=btnSave ) 
+
+btnOpen = tk.Button(text='Open', command=openFile )   
+canvas1.create_window(300 , 650 , window=btnOpen ) 
+
 button1 = tk.Button(text='Solve', command=solve) 
-canvas1.create_window(650, 720, window=button1) 
+canvas1.create_window(400 , 650 , window=button1) 
 
 btnFill = tk.Button(text='TestFill', command=fill) 
-canvas1.create_window(550, 720, window=btnFill ) 
+canvas1.create_window(500 , 650 , window=btnFill ) 
  
 root.mainloop() 
  
