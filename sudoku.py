@@ -1,8 +1,9 @@
 class Grid: 
-    elements = [] 
-
+    
     def __init__(self ):  
         print("New Grid Init ")  
+        self.elements = [] 
+
         for x in range(9) :  
             self.elements.append(0)  
 
@@ -25,7 +26,7 @@ class SudokuBoard:
             self.gridArray.append(Grid() ) 
 
     def addElement(self, gridNumber, spaceNumber, element ):  
-        gridArray[gridNumber].addElement(spaceNumber, element) 
+        self.gridArray[gridNumber].addElement(spaceNumber, element) 
     
     def printBoard(self ):  
         for e in self.gridArray: 
@@ -37,11 +38,8 @@ import tkinter as tk
 
 root= tk.Tk()
 
-canvas1 = tk.Canvas(root, width = 800, height = 800 )  
+canvas1 = tk.Canvas(root, width = 700 , height = 800 )  
 canvas1.pack()
-
-entry1 = tk.Entry (root) 
-canvas1.create_window(650, 650, window=entry1) 
   
 lblTitle = tk.Label(root, text="Sudoku Solver")  
 lblTitle.place(relx = 0.5,  
@@ -104,14 +102,35 @@ canvas1.create_line(TOP_2_3_X, TOP_2_3_Y, BOTTOM_2_3_X, BOTTOM_2_3_Y )
 canvas1.create_line(LEFT_1_3_X, LEFT_1_3_Y, RIGHT_1_3_X, RIGHT_1_3_Y ) 
 canvas1.create_line(LEFT_2_3_X, LEFT_2_3_Y, RIGHT_2_3_X, RIGHT_2_3_Y ) 
 
-def getSquareRoot ():  
-    x1 = entries[0].get() 
+def solve ():  
+    i = 0 
+    for e in entries:  
+        if(e.get()) :  
+            print("i: " + str(i) + " i / 9: " + str( i / 9) + " i % 9: " + str( i % 9 ) ) 
+            board.addElement( i / 9 , i % 9, e.get() )  
+        i = i + 1  
+
+    #x1 = entries[0].get() 
+
+    board.printBoard() 
     
-    label1 = tk.Label(root, text= float(x1)**0.5) 
-    canvas1.create_window(650, 680, window=label1) 
+    #label1 = tk.Label(root, text= float(x1)**0.5) 
+    #canvas1.create_window(650, 680, window=label1) 
+
+def fill () : 
+    i = 0 
+    for e in entries :  
+        entry = e 
+        new_text = str(i)  
+        entry.delete(0, tk.END)
+        entry.insert(0, new_text)
+        i = i + 1 
     
-button1 = tk.Button(text='Get the Square Root', command=getSquareRoot) 
+button1 = tk.Button(text='Solve', command=solve) 
 canvas1.create_window(650, 720, window=button1) 
+
+btnFill = tk.Button(text='TestFill', command=fill) 
+canvas1.create_window(550, 720, window=btnFill ) 
  
 root.mainloop() 
  
